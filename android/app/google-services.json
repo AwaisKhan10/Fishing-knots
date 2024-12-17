@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1023532795002",
+    "project_id": "bright-code-lab",
+    "storage_bucket": "bright-code-lab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023532795002:android:544ad74b053d0210bc67c3",
+        "android_client_info": {
+          "package_name": "com.example.brightcodelab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFKKdvRen5Ev3u14hSz4vglcalKQHvqoo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
