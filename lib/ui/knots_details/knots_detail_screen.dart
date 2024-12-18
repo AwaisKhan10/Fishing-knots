@@ -2,6 +2,7 @@ import 'package:brightcodelab/core/constant/colors.dart';
 import 'package:brightcodelab/core/constant/string.dart';
 import 'package:brightcodelab/core/constant/text_style.dart';
 import 'package:brightcodelab/core/models/knots_model.dart';
+import 'package:brightcodelab/ui/settings/settings_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,7 +46,6 @@ class KnotsDetailScreen extends StatelessWidget {
                 final detail = knotsModel!.knotslist![index];
                 return Container(
                   width: MediaQuery.of(context).size.width * 0.95,
-                  padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.only(left: 5.0, right: 5.0, top: 40),
                   decoration: BoxDecoration(
                     color: Colors.blueGrey,
@@ -55,75 +55,212 @@ class KnotsDetailScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       "${detail.title}" == "Subscription - \n <<Premium>>"
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  detail.title ?? "",
-                                  style: style16.copyWith(
-                                      color: whiteColor, fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                ),
-                                SizedBox(
-                                  height: 20.h,
-                                ),
-                                _rowPrmium(text: 'No Advertising'),
-                                _rowPrmium(text: 'Strength graph'),
-                                _rowPrmium(text: 'Knots Comparison'),
-                                _rowPrmium(text: 'Filter and Storing')
-                                // Text(
-                                //   detail.title ?? "",
-                                //   style: style16.copyWith(color: whiteColor),
-                                //   textAlign: TextAlign.center,
-                                // ),
-                                // Text(
-                                //   detail.title ?? "",
-                                //   style: style16.copyWith(color: whiteColor),
-                                //   textAlign: TextAlign.center,
-                                // ),
-                              ],
+                          ? Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(20),
+                                    child: Text(
+                                      detail.title ?? "",
+                                      style: style16.copyWith(
+                                          color: whiteColor, fontSize: 20),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  _rowPrmium(text: 'No Advertising'),
+                                  _rowPrmium(text: 'Strength graph'),
+                                  _rowPrmium(text: 'Knots Comparison'),
+                                  _rowPrmium(text: 'Filter and Storing'),
+                                ],
+                              ),
                             )
-                          : Text(
-                              detail.title ?? "",
-                              style: style16.copyWith(color: whiteColor),
-                              textAlign: TextAlign.center,
+                          : Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                detail.title ?? "",
+                                style: style16.copyWith(color: whiteColor),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                       const SizedBox(height: 16),
                       detail.img!.isNotEmpty
-                          ? Image.asset(
-                              detail.img!,
-                              height: 200,
-                              fit: BoxFit.cover,
+                          ? Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Image.asset(
+                                detail.img!,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
                             )
                           : const SizedBox(),
                       const SizedBox(height: 16),
                       "${detail.title}" != "Subscription - \n <<Premium>>"
-                          ? Text(
-                              detail.description ?? "",
-                              style: style16.copyWith(color: whiteColor),
-                              textAlign: TextAlign.center,
+                          ? Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                detail.description ?? "",
+                                style: style16.copyWith(color: whiteColor),
+                                textAlign: TextAlign.center,
+                              ),
                             )
                           : InkWell(
                               onTap: () {},
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
-                                decoration: BoxDecoration(
-                                  color: borderBlueColor,
-                                  borderRadius: BorderRadius.circular(24.r),
-                                ),
-                                child: Text(
-                                  "Premium",
-                                  style: style16.copyWith(color: whiteColor),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 20),
+                                  decoration: BoxDecoration(
+                                    color: borderBlueColor,
+                                    borderRadius: BorderRadius.circular(24.r),
+                                  ),
+                                  child: Text(
+                                    "Premium",
+                                    style: style16.copyWith(color: whiteColor),
+                                  ),
                                 ),
                               ),
                             ),
+                      if (index == 0)
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                              color: blaclColor.withOpacity(0.40),
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(10.r),
+                                  bottomLeft: Radius.circular(10.r))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Image.asset(
+                                "$staticAssets/play.png",
+                                scale: 4,
+                              ),
+                              Image.asset("$staticAssets/icon1.png", scale: 2),
+                              Image.asset("$staticAssets/icon2.png", scale: 2),
+                              Image.asset("$staticAssets/icon3.png", scale: 2),
+                              Text(
+                                "${knotsModel!.percent} %",
+                                style: style16.copyWith(
+                                    fontSize: 14.sp, color: whiteColor),
+                              ),
+                            ],
+                          ),
+                        )
                     ],
                   ),
                 );
               },
             ),
+
+      bottomNavigationBar: Container(
+        height: 120,
+        decoration: const BoxDecoration(color: Colors.transparent),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "$staticAssets/play.png",
+                      scale: 4,
+                      color: Colors.red,
+                    ),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    Text(
+                      "Instruction",
+                      style: style16,
+                    )
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "$staticAssets/play.png",
+                      scale: 4,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    Text(
+                      "Testing",
+                      style: style16,
+                    )
+                  ],
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // First Backward Icon
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.skip_previous,
+                      color: Colors.black, size: 30),
+                ),
+                // Step Backward Icon
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_back_ios,
+                      color: Colors.black, size: 24),
+                ),
+                // Play Icon
+                IconButton(
+                  onPressed: () {},
+                  icon: Container(
+                    padding: const EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.60),
+                        shape: BoxShape.circle),
+                    child: const Icon(Icons.play_arrow,
+                        color: Colors.black, size: 30),
+                  ),
+                ),
+                // Pause Icon
+                IconButton(
+                  onPressed: () {},
+                  icon: Container(
+                      padding: const EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.60),
+                          shape: BoxShape.circle),
+                      child: const Icon(Icons.pause,
+                          color: Colors.black, size: 30)),
+                ),
+                // Step Forward Icon
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_forward_ios,
+                      color: Colors.black, size: 24),
+                ),
+                // Last Forward Icon
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.skip_next,
+                      color: Colors.black, size: 30),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -141,12 +278,15 @@ PreferredSizeWidget _appBar(KnotsModel? knotsModel, BuildContext context) {
       IconButton(
         onPressed: () {},
         icon: const Icon(
-          Icons.favorite,
+          Icons.share,
           color: Colors.white,
         ),
       ),
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SettingsScreen()));
+        },
         icon: const Icon(
           Icons.settings,
           color: Colors.white,
@@ -156,11 +296,11 @@ PreferredSizeWidget _appBar(KnotsModel? knotsModel, BuildContext context) {
     leading: IconButton(
       onPressed: () {
         // Handle back navigation
-        // Navigator.of(context).pop();
+        Navigator.of(context).pop();
       },
-      icon: Image.asset(
-        "$staticAssets/menu.png",
-        scale: 3,
+      icon: const Icon(
+        Icons.arrow_back,
+        color: whiteColor,
       ),
     ),
   );

@@ -4,6 +4,7 @@ class KnotsModel {
   String? id;
   String? name;
   String? imgUrl;
+  String? percent;
   List<KnotsDetailModel>? knotslist;
-  KnotsModel({this.imgUrl, this.name, this.id, this.knotslist});
+  KnotsModel({this.imgUrl, this.name, this.id, this.knotslist, this.percent});
 }

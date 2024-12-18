@@ -38,7 +38,10 @@ class HomeScreen extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => KnotsScreen(),
+                                      builder: (context) => KnotsScreen(
+                                        image:
+                                            "${model.listhomeScreen[index].imgUrl}",
+                                      ),
                                     ));
                               },
                               child: CustomHomeScreenKnotsWidget(
@@ -63,17 +66,19 @@ _appBar(context) {
       style: TextStyle(color: Colors.white),
     ),
     actions: [
+      // IconButton(
+      //     onPressed: () {
+
+      //     },
+      //     icon: const Icon(
+      //       Icons.favorite,
+      //       color: Colors.white,
+      //     )),
       IconButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SettingsScreen()));
-          },
-          icon: const Icon(
-            Icons.favorite,
-            color: Colors.white,
-          )),
-      IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SettingsScreen()));
+        },
         icon: const Icon(
           Icons.settings,
           color: Colors.white,
