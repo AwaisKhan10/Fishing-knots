@@ -4,6 +4,7 @@ import 'package:brightcodelab/core/constant/string.dart';
 import 'package:brightcodelab/customWidgets/home_screen.dart';
 import 'package:brightcodelab/ui/home/home_view_model.dart';
 import 'package:brightcodelab/ui/knots/knots_screen.dart';
+import 'package:brightcodelab/ui/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
                 ///
                 /// App Bar
                 ///
-                appBar: _appBar(),
+                appBar: _appBar(context),
 
                 ///
                 /// Start Body
@@ -53,7 +54,7 @@ class HomeScreen extends StatelessWidget {
 /// App Bar
 ///
 
-_appBar() {
+_appBar(context) {
   return AppBar(
     centerTitle: true,
     backgroundColor: Colors.blue,
@@ -63,7 +64,10 @@ _appBar() {
     ),
     actions: [
       IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SettingsScreen()));
+          },
           icon: const Icon(
             Icons.favorite,
             color: Colors.white,

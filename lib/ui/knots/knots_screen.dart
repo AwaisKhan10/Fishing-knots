@@ -4,6 +4,7 @@ import 'package:brightcodelab/core/constant/string.dart';
 import 'package:brightcodelab/customWidgets/knots_reuse.dart';
 import 'package:brightcodelab/ui/knots/knots_view_model.dart';
 import 'package:brightcodelab/ui/knots_details/knots_detail_screen.dart';
+import 'package:brightcodelab/ui/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class KnotsScreen extends StatelessWidget {
           ///
           /// App Bar
           ///
-          appBar: _appBar(),
+          appBar: _appBar(context),
 
           ///
           /// Start Body
@@ -58,7 +59,7 @@ class KnotsScreen extends StatelessWidget {
   }
 }
 
-_appBar() {
+_appBar(context) {
   return AppBar(
     centerTitle: true,
     backgroundColor: Colors.blue,
@@ -68,13 +69,20 @@ _appBar() {
     ),
     actions: [
       IconButton(
-          onPressed: () {},
+          onPressed: () {
+            ///
+            /// Going to show modal sheet
+            ///
+          },
           icon: const Icon(
-            Icons.favorite,
+            Icons.filter_1,
             color: Colors.white,
           )),
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => SettingsScreen()));
+        },
         icon: const Icon(
           Icons.settings,
           color: Colors.white,
